@@ -1,0 +1,122 @@
+﻿@* This is the home page of your admin panel *@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";  // Assuming you are using a Layout page
+}
+
+<div class="row mt-3">
+    <div class="col-md-12">
+        <h3>Welcome to Admin Dashboard</h3>
+        <div class="row text-center">
+            <!-- Initiative Requests Section -->
+            <div class="col-md-4">
+                <a href="/Initiatives" class="text-decoration-none">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Initiative Requests</h5>
+                            <p class="card-text display-4">67</p>
+                            <span class="badge badge-pill badge-danger">2 New</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Forms Requests Section -->
+            <div class="col-md-4">
+                <a href="/Forms" class="text-decoration-none">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Forms Requests</h5>
+                            <p class="card-text display-4">34</p>
+                            <span class="badge badge-pill badge-danger">2 New</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Comments Requests Section -->
+            <div class="col-md-4">
+                <a href="/Comments" class="text-decoration-none">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Comments Requests</h5>
+                            <p class="card-text display-4">52</p>
+                            <span class="badge badge-pill badge-danger">2 New</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <!-- Events Section -->
+        <div class="row mt-4">
+            <div class="col-md-12">
+                <h4>Events</h4>
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <p><strong>Jade Watson</strong> | November 06, 12:49</p>
+                                <p>Welcome all Employees on HR Portal!</p>
+                            </div>
+                            <img src="path_to_image" alt="Event image" style="max-width: 100px;" />
+                        </div>
+                        <textarea class="form-control" rows="2" placeholder="Add Comment"></textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Initiative and Forms Section -->
+        <div class="row">
+            <!-- Initiatives Section -->
+            <div class="col-md-6">
+                <h4>Initiative</h4>
+                <div class="list-group">
+                    <a href="/Initiatives/1" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Initiative 1</h5>
+                            <small><span class="badge badge-success">Approved</span></small>
+                        </div>
+                        <p class="mb-1">Lorem ipsum dolor sit amet.</p>
+                    </a>
+                    <a href="/Initiatives/2" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Initiative 2</h5>
+                            <small><span class="badge badge-primary">Pending</span></small>
+                        </div>
+                        <p class="mb-1">Lorem ipsum dolor sit amet.</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Forms Section -->
+            <div class="col-md-6">
+                <h4>Forms</h4>
+                <div class="list-group">
+                    <a href="/Forms/1" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Form 1</h5>
+                            <small><span class="badge badge-warning">Pending</span></small>
+                        </div>
+                        <p class="mb-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                    </a>
+                    <a href="/Forms/2" class="list-group-item list-group-item-action">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">Form 2</h5>
+                            <small><span class="badge badge-success">Approved</span></small>
+                        </div>
+                        <p class="mb-1">Nullam quis risus eget urna mollis ornare vel eu leo.</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Calendar Section -->
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <h4>Calendar</h4>
+                <input type="date" class="form-control" value="2023-11-16" />
+            </div>
+        </div>
+    </div>
+</div>

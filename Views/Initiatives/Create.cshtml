@@ -1,0 +1,53 @@
+﻿@model Initiative
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Initiative</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="project_manager" class="control-label"></label>
+                <input asp-for="project_manager" class="form-control" />
+                <span asp-validation-for="project_manager" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="objective" class="control-label"></label>
+                <input asp-for="objective" class="form-control" />
+                <span asp-validation-for="objective" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="description" class="control-label"></label>
+                <input asp-for="description" class="form-control" />
+                <span asp-validation-for="description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="benefits" class="control-label"></label>
+                <input asp-for="benefits" class="form-control" />
+                <span asp-validation-for="benefits" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="files_paths" class="control-label"></label>
+                <input asp-for="files_paths" class="form-control" />
+                <span asp-validation-for="files_paths" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

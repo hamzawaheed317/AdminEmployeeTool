@@ -1,0 +1,51 @@
+﻿@* Initiatives List Page with Status *@
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";  // Assuming you are using a Layout page
+
+    // Sample data - Replace this with data from your model/controller
+    var initiatives = new List<dynamic>
+    {
+        new { Title = "Initiative 1", Description = "This is the first initiative.", Status = "Pending" },
+        new { Title = "Initiative 2", Description = "This is the second initiative.", Status = "Approved" },
+        new { Title = "Initiative 3", Description = "This is the third initiative.", Status = "Rejected" },
+        new { Title = "Initiative 4", Description = "This is the fourth initiative.", Status = "Pending" }
+    };
+}
+
+<div class="row mt-3">
+    <div class="col-md-12">
+        <h3>All Initiative Requests</h3>
+
+        <div class="list-group mt-4">
+            @foreach (var initiative in initiatives)
+            {
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between">
+                            <div>
+                                <h5 class="card-title">@initiative.Title</h5>
+                                <p class="card-text">@initiative.Description</p>
+                            </div>
+
+                            <div>
+                                @* Status with corresponding badge *@
+                                @if (initiative.Status == "Pending")
+                                {
+                                    <span class="badge badge-primary">Pending</span>
+                                }
+                                else if (initiative.Status == "Approved")
+                                {
+                                    <span class="badge badge-success">Approved</span>
+                                }
+                                else if (initiative.Status == "Rejected")
+                                {
+                                    <span class="badge badge-danger">Rejected</span>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

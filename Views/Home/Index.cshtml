@@ -1,0 +1,102 @@
+﻿@{
+    ViewData["Title"] = "Calendar";
+}
+
+<div class="container mt-4">
+    <!-- Header Section -->
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1 class="display-4">Event Calendar</h1>
+            <p>Here you can manage your events. </p>
+        </div>
+    </div>
+
+    <!-- Filters and Add Event Button -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="filters mb-3">
+                <!-- Date Range Filter -->
+                <label>Date Range: </label>
+                <input type="date" class="form-control d-inline-block w-auto" />
+
+                <!-- Label Filter -->
+                <label class="ml-3">Label: </label>
+                <select class="form-control d-inline-block w-auto">
+                    <option>All</option>
+                    <option>Holiday</option>
+                    <option>Meeting</option>
+                    <option>Event</option>
+                </select>
+
+                <!-- Add Event Button -->
+                <button class="btn btn-primary ml-3" onclick="window.location.href='@Url.Action("Create", "EventViewModels")'">Add Event</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Calendar Layout -->
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th>Sun</th>
+                        <th>Mon</th>
+                        <th>Tue</th>
+                        <th>Wed</th>
+                        <th>Thu</th>
+                        <th>Fri</th>
+                        <th>Sat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>4</td>
+                        <td>5</td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>12</td>
+                        <td>13</td>
+                    </tr>
+                    <tr>
+                        <td>14</td>
+                        <td>15</td>
+                        <td>16</td>
+                        <td>17</td>
+                        <td>18</td>
+                        <td>19</td>
+                        <td>20</td>
+                    </tr>
+                    <tr>
+                        <td>21</td>
+                        <td>22</td>
+                        <td>23</td>
+                        <td>24</td>
+                        <td>25</td>
+                        <td>26</td>
+                        <td>27</td>
+                    </tr>
+                    <tr>
+                        <td>28</td>
+                        <td>29</td>
+                        <td>30</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

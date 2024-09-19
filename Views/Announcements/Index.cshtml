@@ -1,0 +1,93 @@
+﻿@model IEnumerable<AdminEmployeeTool.Models.Announcement>
+
+@{
+    ViewData["Title"] = "Announcements";
+}
+
+<h1>Announcements</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+
+<div class="announcement-list">
+    @foreach (var item in Model)
+    {
+        <div class="announcement">
+            <!-- Title -->
+            <h3>@item.Title</h3>
+
+            <!-- Date and Author -->
+            <p>
+                <small>
+                    <strong>@item.PostedDate.ToString("MMMM dd, yyyy hh:mm tt")</strong>
+                </small><br />
+                <small>by @item.Author</small>
+            </p>
+
+            <!-- Content -->
+            <p>@item.Content</p>
+
+            <!-- Image/Video -->
+            @if (!string.IsNullOrEmpty(item.ImageUrl))
+            {
+                <div>
+                    <img src="@Url.Content("~/images/" + item.ImageUrl)" alt="Image" class="img-fluid" />
+                </div>
+            }
+            else if (!string.IsNullOrEmpty(item.VideoUrl))
+            {
+                <div>
+                    <video controls width="100%">
+                        <source src="@Url.Content("~/videos/" + item.VideoUrl)" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            }
+
+            <!-- Like button and Likes count -->
+            <div class="likes-section">
+                <button class="btn btn-outline-primary like-btn" data-id="@item.Id">Like</button>
+                <span>@item.LikesCount likes</span>
+            </div>
+
+            <!-- Comments Section -->
+            <div class="comments-section">
+                <a href="@Url.Action("Comments", new { announcementId = item.Id })" class="btn btn-link">View all comments</a>
+
+                <!-- Comment form -->
+                <form asp-action="AddComment" method="post" class="comment-form">
+                    <input type="hidden" name="AnnouncementId" value="@item.Id" />
+                    <div class="form-group">
+                        <textarea name="CommentContent" class="form-control" placeholder="Add a comment..." rows="2" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Comment</button>
+                </form>
+            </div>
+
+            <hr />
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        // Like button functionality (AJAX)
+        $('.like-btn').click(function () {
+            var announcementId = $(this).data('id');
+
+            $.ajax({
+                url: '/Announcements/Like',
+                type: 'POST',
+                data: { id: announcementId },
+                success: function (result) {
+                    // You can update the like count dynamically here
+                    location.reload(); // For now, reload the page
+                },
+                error: function () {
+                    alert('Error liking the announcement.');
+                }
+            });
+        });
+    </script>
+}

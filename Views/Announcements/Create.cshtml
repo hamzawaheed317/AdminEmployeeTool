@@ -1,0 +1,118 @@
+﻿@model AdminEmployeeTool.Models.Announcement
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create Announcement</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="Create" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Content" class="control-label"></label>
+                <textarea asp-for="Content" class="form-control"></textarea>
+                <span asp-validation-for="Content" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Author" class="control-label"></label>
+                <input asp-for="Author" class="form-control" />
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="IsPinned" class="control-label"></label>
+                <input asp-for="IsPinned" type="checkbox" class="form-check-input" />
+            </div>
+
+            <!-- File upload for Image -->
+            <div class="form-group">
+                <label asp-for="ImageUrl" class="control-label">Upload Image</label>
+                <input id="imageUpload" type="file" class="form-control" accept="image/*" />
+                <span id="imageUploadStatus" class="text-success"></span>
+                <!-- Hidden field to store the image file name -->
+                <input asp-for="ImageUrl" type="hidden" id="imageFileName" />
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+
+            <!-- File upload for Video -->
+            <div class="form-group">
+                <label asp-for="VideoUrl" class="control-label">Upload Video</label>
+                <input id="videoUpload" type="file" class="form-control" accept="video/*" />
+                <span id="videoUploadStatus" class="text-success"></span>
+                <!-- Hidden field to store the video file name -->
+                <input asp-for="VideoUrl" type="hidden" id="videoFileName" />
+                <span asp-validation-for="VideoUrl" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script>
+        // Function to handle image file upload
+        $('#imageUpload').change(function () {
+            var formData = new FormData();
+            formData.append('file', $('#imageUpload')[0].files[0]);
+            formData.append('announcementId', $('#announcementId').val()); // Add the announcement ID
+
+            $.ajax({
+                url: '/Announcements/UploadImage',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    $('#imageFileName').val(data.fileName); // Set the returned file name in the hidden field
+                    $('#imageUploadStatus').text('Image uploaded successfully: ' + data.fileName);
+                },
+                error: function () {
+                    $('#imageUploadStatus').text('Image upload failed.');
+                }
+            });
+        });
+
+        // Function to handle video file upload
+        $('#videoUpload').change(function () {
+            var formData = new FormData();
+            formData.append('file', $('#videoUpload')[0].files[0]);
+            formData.append('announcementId', $('#announcementId').val()); // Add the announcement ID
+
+            $.ajax({
+                url: '/Announcements/UploadVideo',
+                type: 'POST',
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function (data) {
+                    $('#videoFileName').val(data.fileName); // Set the returned file name in the hidden field
+                    $('#videoUploadStatus').text('Video uploaded successfully: ' + data.fileName);
+                },
+                error: function () {
+                    $('#videoUploadStatus').text('Video upload failed.');
+                }
+            });
+        });
+
+    </script>
+}
